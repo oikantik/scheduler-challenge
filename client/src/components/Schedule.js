@@ -54,21 +54,11 @@ export default function Schedule() {
               <TableCell component='th' scope='row'>
                 {row}
               </TableCell>
-              <TableCell align='right'>
-                <Employees day='monday' type={row} />
-              </TableCell>
-              <TableCell align='right'>
-                <Employees day='tuesday' type={row} />
-              </TableCell>
-              <TableCell align='right'>
-                <Employees day='wednesday' type={row} />
-              </TableCell>
-              <TableCell align='right'>
-                <Employees day='thursday' type={row} />
-              </TableCell>
-              <TableCell align='right'>
-                <Employees day='friday' type={row} />
-              </TableCell>
+              {days.map((day, index) => (
+                <TableCell align='right' key={index}>
+                  <Employees day={day.toLowerCase()} type={row} />
+                </TableCell>
+              ))}
             </TableRow>
           ))}
         </TableBody>

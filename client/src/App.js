@@ -21,9 +21,14 @@ function App() {
   return (
     <Container>
       <Typography variant='h3' className={classes.title}>
-        Scheduler
+        Schedule
       </Typography>
       <Schedule />
+
+      <Typography variant='h3' className={classes.title}>
+        Load
+      </Typography>
+
       <Load />
     </Container>
   );

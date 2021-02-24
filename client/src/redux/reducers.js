@@ -8,6 +8,7 @@ const initialState = {
     {
       label: "X1",
       value: "X1",
+      isdisabled: false,
       shifts: {
         monday: { number: 0, morning: 0, lunch: 0, afternoon: 0 },
         tuesday: { number: 0, morning: 0, lunch: 0, afternoon: 0 },
@@ -20,6 +21,7 @@ const initialState = {
     {
       label: "X2",
       value: "X2",
+      isdisabled: false,
       shifts: {
         monday: { number: 0, morning: 0, lunch: 0, afternoon: 0 },
         tuesday: { number: 0, morning: 0, lunch: 0, afternoon: 0 },
@@ -32,6 +34,7 @@ const initialState = {
     {
       label: "X3",
       value: "X3",
+      isdisabled: false,
       shifts: {
         monday: { number: 0, morning: 0, lunch: 0, afternoon: 0 },
         tuesday: { number: 0, morning: 0, lunch: 0, afternoon: 0 },
@@ -44,6 +47,7 @@ const initialState = {
     {
       label: "X4",
       value: "X4",
+      isdisabled: false,
       shifts: {
         monday: { number: 0, morning: 0, lunch: 0, afternoon: 0 },
         tuesday: { number: 0, morning: 0, lunch: 0, afternoon: 0 },
@@ -56,6 +60,7 @@ const initialState = {
     {
       label: "X5",
       value: "X5",
+      isdisabled: false,
       shifts: {
         monday: { number: 0, morning: 0, lunch: 0, afternoon: 0 },
         tuesday: { number: 0, morning: 0, lunch: 0, afternoon: 0 },
@@ -68,6 +73,7 @@ const initialState = {
     {
       label: "X6",
       value: "X6",
+      isdisabled: false,
       shifts: {
         monday: { number: 0, morning: 0, lunch: 0, afternoon: 0 },
         tuesday: { number: 0, morning: 0, lunch: 0, afternoon: 0 },
@@ -80,6 +86,7 @@ const initialState = {
     {
       label: "X7",
       value: "X7",
+      isdisabled: false,
       shifts: {
         monday: { number: 0, morning: 0, lunch: 0, afternoon: 0 },
         tuesday: { number: 0, morning: 0, lunch: 0, afternoon: 0 },
@@ -89,6 +96,11 @@ const initialState = {
       },
     },
   ],
+  lastEmployee: {
+    old: {},
+    new: {},
+  },
+  lastIndex: -1,
 };
 
 const schedule = (state = initialState, action) => {
@@ -112,6 +124,8 @@ const schedule = (state = initialState, action) => {
 
       const type = action.payload.type.toLowerCase();
 
+      // does someone else have this same thing?
+
       // if type included work
 
       if (type.includes("morning") && day.morning < 1) {
@@ -129,10 +143,16 @@ const schedule = (state = initialState, action) => {
         day.number += 1;
       }
 
+      if (day.number === 2) {
+        newEmployees[index].isdisabled = true;
+      }
+
       return {
         ...state,
         loading: false,
         employees: newEmployees,
+        lastEmployee: { new: { ...action.payload }, old: {} },
+        lastIndex: index,
         error: error,
       };
     }

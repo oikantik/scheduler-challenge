@@ -13,6 +13,9 @@ const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
+  tableContainer: {
+    marginBottom: "2rem",
+  },
 });
 
 const tableHeads = [
@@ -29,7 +32,7 @@ function Load({ employees }) {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={classes.tableContainer}>
       <Table className={classes.table} aria-label='simple table'>
         <TableHead>
           <TableRow>
@@ -65,7 +68,13 @@ function Load({ employees }) {
                   <TableCell align='right'>
                     {employee.shifts.friday.number}
                   </TableCell>
-                  <TableCell align='right'>0</TableCell>
+                  <TableCell align='right'>
+                    {employee.shifts.monday.number +
+                      employee.shifts.tuesday.number +
+                      employee.shifts.wednesday.number +
+                      employee.shifts.thursday.number +
+                      employee.shifts.friday.number}
+                  </TableCell>
                 </TableRow>
               );
             })}
