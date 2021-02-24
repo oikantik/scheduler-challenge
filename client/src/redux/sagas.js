@@ -1,14 +1,17 @@
 import { fork, put, takeLatest } from "redux-saga/effects";
 import * as types from "./constants";
 
-function* appLoadSaga() {
-  yield put({});
+function* updateEmployee(action) {
+  yield put({
+    type: types.UPDATE_EMPLOYEE_SUCCESSFUL,
+    payload: action.payload,
+  });
 }
 
-function* watchAppLoadSaga() {
-  yield takeLatest(types.APP_LOAD, appLoadSaga);
+function* watchUpdateEmployee() {
+  yield takeLatest(types.UPDATE_EMPLOYEE, updateEmployee);
 }
 
 export default function* rootSaga() {
-  yield fork(watchAppLoadSaga);
+  yield fork(watchUpdateEmployee);
 }

@@ -7,6 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import Employees from "./Employees";
 
 const useStyles = makeStyles({
   table: {
@@ -14,26 +15,22 @@ const useStyles = makeStyles({
   },
 });
 
-const createData = (name, monday, tuesday, wednesday, thursday, friday) => {
-  return { name, monday, tuesday, wednesday, thursday, friday };
-};
-
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
 const rows = [
-  createData("Morning Up Stairs", 159, 6.0, 24, 4.0, 2),
-  createData("Morning Down Stairs", 237, 9.0, 37, 4.3, 3),
-  createData("Morning Parking Lot", 262, 16.0, 24, 6.0, 3),
-  createData("Lunch A", 305, 3.7, 67, 4.3, 3),
-  createData("Lunch B", 305, 3.7, 67, 4.3, 3),
-  createData("Lunch C", 305, 3.7, 67, 4.3, 3),
-  createData("Lunch D", 305, 3.7, 67, 4.3, 3),
-  createData("Afternoon Up Stairs", 305, 3.7, 67, 4.3, 3),
-  createData("Afternoon Down Stairs", 305, 3.7, 67, 4.3, 3),
-  createData("Afternoon Parking Lot", 305, 3.7, 67, 4.3, 3),
+  "Morning Up Stairs",
+  "Morning Down Stairs",
+  "Morning Parking Lot",
+  "Lunch A",
+  "Lunch B",
+  "Lunch C",
+  "Lunch D",
+  "Afternoon Up Stairs",
+  "Afternoon Down Stairs",
+  "Afternoon Parking Lot",
 ];
 
-export default function BasicTable() {
+export default function Schedule() {
   const classes = useStyles();
 
   return (
@@ -52,16 +49,26 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
+          {rows.map((row, index) => (
+            <TableRow key={index}>
               <TableCell component='th' scope='row'>
-                {row.name}
+                {row}
               </TableCell>
-              <TableCell align='right'>{row.monday}</TableCell>
-              <TableCell align='right'>{row.tuesday}</TableCell>
-              <TableCell align='right'>{row.wednesday}</TableCell>
-              <TableCell align='right'>{row.thursday}</TableCell>
-              <TableCell align='right'>{row.friday}</TableCell>
+              <TableCell align='right'>
+                <Employees day='monday' type={row} />
+              </TableCell>
+              <TableCell align='right'>
+                <Employees day='tuesday' type={row} />
+              </TableCell>
+              <TableCell align='right'>
+                <Employees day='wednesday' type={row} />
+              </TableCell>
+              <TableCell align='right'>
+                <Employees day='thursday' type={row} />
+              </TableCell>
+              <TableCell align='right'>
+                <Employees day='friday' type={row} />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

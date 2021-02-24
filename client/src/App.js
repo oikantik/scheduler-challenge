@@ -1,12 +1,31 @@
+import { Container, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
 import "./App.scss";
 import "react-toastify/dist/ReactToastify.css";
-import BasicTable from "./components/BasicTable";
+
+import Schedule from "./components/Schedule";
+import Load from "./components/Load";
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    marginTop: "1.5rem",
+    marginBottom: "1.5rem",
+    textAlign: "center",
+  },
+}));
 
 function App() {
+  const classes = useStyles();
+
   return (
-    <div className='App'>
-      <BasicTable />
-    </div>
+    <Container>
+      <Typography variant='h3' className={classes.title}>
+        Scheduler
+      </Typography>
+      <Schedule />
+      <Load />
+    </Container>
   );
 }
 

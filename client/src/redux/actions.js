@@ -1,9 +1,10 @@
 import * as types from "./constants";
 
-const load = () => {
+const updateEmployee = (payload) => {
   return {
-    type: types.APP_LOAD,
+    type: types.UPDATE_EMPLOYEE,
+    payload,
   };
 };
 
-export default load;
+export default updateEmployee;
